@@ -246,7 +246,7 @@
                         data: { lat: position.coords.latitude, lon: position.coords.longitude, csrfmiddlewaretoken: '{{ csrf_token }}' },
                         success: function (serverResponse) {
                             // Replace the html inside a div with the class "posts" with the server response
-                            console.log("Received this from server: ", serverResponse)
+                            // console.log("Received this from server: ", serverResponse)
                             $('#display_content').html(serverResponse)
                         }
                     });
@@ -256,7 +256,7 @@
                         data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
                         success: function (serverResponse) {
                             // Replace the html inside a div with the class "posts" with the server response
-                            console.log("Received this from server: ", serverResponse)
+                            // console.log("Received this from server: ", serverResponse)
                             $('#display_friends_weather').html(serverResponse)
                         }
                     });
@@ -268,7 +268,7 @@
 
         });
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?&libraries=places&callback=initAutocomplete" async defer></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?&libraries=places&callback=initAutocomplete" async defer></script>-->
 
 
     <script>
