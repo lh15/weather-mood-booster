@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from views import *           # So we can call functions from our routes!
+from moments_app.views import *          # So we can call functions from our routes!
 urlpatterns = [
     url(r'^$', index, name = "index"),
     url(r'^display$', display, name = "display"),          
