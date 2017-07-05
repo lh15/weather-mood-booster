@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #map-canvas {
+            height: 200px;
+            width: 300px;
+            margin: 0px;
+            padding: 0px
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div id="map-canvas">
+        
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry,places&ext=.js"></script>
+    <script>
+        var myLatlng = new google.maps.LatLng(41.8500300, -87.6500500);
+        var myOptions = {
+            zoom: 13,
+            center: myLatlng,
+        }
+        var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+        
+        var geocoder = new google.maps.Geocoder();
+
+        google.maps.event.addListener(map, 'click', function (event) {
+            geocoder.geocode({
+                'latLng': event.latLng
+            }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        alert(results[0].formatted_address);
+                        var lat = event.latLng.lat();
+                        var lng = event.latLng.lng();
+                        console.log(event.latLng);
+                        console.log(lat);
+                        console.log(lng);
+                        alert(event.latLng);
+                    }
+                }
+            });
+        });
+
+    </script>
+    
+</body>
+
+</html>

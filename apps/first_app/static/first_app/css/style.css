@@ -1,0 +1,459 @@
+/*font-family: 'Barrio', cursive;
+font-family: 'Bungee', cursive;
+font-family: 'Bungee Shade', cursive;
+font-family: 'BioRhyme', serif;
+font-family: 'Fruktur', cursive;
+font-family: 'Ewert', cursive;
+font-family: 'Gravitas One', cursive;
+font-family: 'Monoton', cursive;
+font-family: 'Black Ops One', cursive;
+font-family: 'Creepster', cursive;
+font-family: 'Rubik', sans-serif;
+font-family: 'Pacifico', cursive;
+font-family: 'Quicksand', sans-serif;
+font-family: 'Inconsolata', monospace;
+font-family: 'Cabin', sans-serif;
+font-family: 'VT323', monospace;
+font-family: 'Nunito', sans-serif;
+font-family: 'Nunito Sans', sans-serif;*/
+body{
+    background: linear-gradient(to top, #00c3ff, #ffff1c);
+    background-attachment: fixed;
+    font-family: 'Love Ya Like A Sister', cursive;
+    text-align: center;
+    
+}
+.box14 {
+    padding: 40px;
+	-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.modal .modal-content { 
+   background: linear-gradient(to bottom, #dce35b, #45b649) !important; 
+   color: rgb(234, 71, 71);
+   font-size: 1.7em;
+   font-family: 'VT323', monospace;
+}
+.header {
+    display: inline-block;
+    margin: 40px auto;
+    color: #912CEE;
+    text-align: center;
+}
+h1 {
+    font-size: 65px;
+}
+h3 {
+    margin: 0px;
+}
+#myModalLabel {
+    font-family: 'Love Ya Like A Sister', cursive;
+}
+
+.gif_img{
+    width: 165px;
+}
+#map img {
+    max-width: none;
+}
+.weather_img {
+    width: 300px;
+    margin: -70px -100%;
+    
+}
+.pac-container { z-index: 100000; }
+#pac-input { z-index: 100000; }
+.modal{
+    z-index: 20;   
+}
+.modal-backdrop{
+    z-index: 10;        
+}​
+#display_content {
+    display: none;
+}
+#share_this {
+    display: none;
+}
+#buttons {
+    display: none;
+}
+.display_content {
+    display: inline-block;
+    text-align: center;
+    width: 60%;
+    font-size: 2.5em;
+    color: #FF6600
+}
+.VT323{
+    font-family: 'VT323', monospace;
+}
+.quote_div {
+    color: #FF0000
+}
+
+#add_friend_btn{
+    display: none;
+}
+#friend_weather_btn{
+    display: none;
+}
+
+
+ /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+    height: 300px;
+    width: 90%;
+    margin: 0px auto;
+    padding: 0px;
+    border: 2px solid black;
+    display: block;
+    
+}
+/* Optional: Makes the sample page fill the window. */
+#pac-input,.pac-card{background-color:#fff}body,html{height:100%;margin:0;padding:0}#description{font-family:Roboto;font-size:15px;font-weight:300}#infowindow-content .title{font-weight:700}#pac-input,.pac-controls label{font-family:Roboto;font-weight:300}#infowindow-content{display:none}#map #infowindow-content{display:inline}.pac-card{margin:10px 10px 0 0;border-radius:2px 0 0 2px;box-sizing:border-box;-moz-box-sizing:border-box;outline:0;box-shadow:0 2px 6px rgba(0,0,0,.3);font-family:Roboto}#pac-container{padding-bottom:12px;margin-right:12px}.pac-controls{display:inline-block;padding:5px 11px}.pac-controls label{font-size:13px}#pac-input{font-size:15px;margin-left:12px;padding:0 11px 0 13px;text-overflow:ellipsis;width:50%}#pac-input:focus{border-color:#4d90fe}#title{color:#fff;background-color:#4d90fe;font-size:25px;font-weight:500;padding:6px 12px}#target{width:345px}
+
+.cssload-loader-inner {
+bottom: 0;
+height: 58px;
+left: 0;
+margin: auto;
+position: absolute;
+right: 0;
+top: 0;
+width: 97px;
+}
+
+    .cssload-cssload-loader-line-wrap-wrap {
+        animation: cssload-spin 2300ms cubic-bezier(.175, .885, .32, 1.275) infinite;
+        -o-animation: cssload-spin 2300ms cubic-bezier(.175, .885, .32, 1.275) infinite;
+        -ms-animation: cssload-spin 2300ms cubic-bezier(.175, .885, .32, 1.275) infinite;
+        -webkit-animation: cssload-spin 2300ms cubic-bezier(.175, .885, .32, 1.275) infinite;
+        -moz-animation: cssload-spin 2300ms cubic-bezier(.175, .885, .32, 1.275) infinite;
+        box-sizing: border-box;
+        -o-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 49px;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        transform-origin: 50% 100%;
+        -o-transform-origin: 50% 100%;
+        -ms-transform-origin: 50% 100%;
+        -webkit-transform-origin: 50% 100%;
+        -moz-transform-origin: 50% 100%;
+        width: 97px;
+    }
+
+    .cssload-loader-line-wrap {
+        border: 4px solid transparent;
+        border-radius: 100%;
+        -o-border-radius: 100%;
+        -ms-border-radius: 100%;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        box-sizing: border-box;
+        -o-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 97px;
+        left: 0;
+        margin: 0 auto;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 97px;
+    }
+
+    .cssload-cssload-loader-line-wrap-wrap:nth-child(1) {
+        animation-delay: -57.5ms;
+        -o-animation-delay: -57.5ms;
+        -ms-animation-delay: -57.5ms;
+        -webkit-animation-delay: -57.5ms;
+        -moz-animation-delay: -57.5ms;
+    }
+
+    .cssload-cssload-loader-line-wrap-wrap:nth-child(2) {
+        animation-delay: -115ms;
+        -o-animation-delay: -115ms;
+        -ms-animation-delay: -115ms;
+        -webkit-animation-delay: -115ms;
+        -moz-animation-delay: -115ms;
+    }
+
+    .cssload-cssload-loader-line-wrap-wrap:nth-child(3) {
+        animation-delay: -172.5ms;
+        -o-animation-delay: -172.5ms;
+        -ms-animation-delay: -172.5ms;
+        -webkit-animation-delay: -172.5ms;
+        -moz-animation-delay: -172.5ms;
+    }
+
+    .cssload-cssload-loader-line-wrap-wrap:nth-child(4) {
+        animation-delay: -230ms;
+        -o-animation-delay: -230ms;
+        -ms-animation-delay: -230ms;
+        -webkit-animation-delay: -230ms;
+        -moz-animation-delay: -230ms;
+    }
+
+    .cssload-cssload-loader-line-wrap-wrap:nth-child(5) {
+        animation-delay: -287.5ms;
+        -o-animation-delay: -287.5ms;
+        -ms-animation-delay: -287.5ms;
+        -webkit-animation-delay: -287.5ms;
+        -moz-animation-delay: -287.5ms;
+    }
+
+    .cssload-cssload-loader-line-wrap-wrap:nth-child(1) .cssload-loader-line-wrap {
+        border-color: rgb(234, 71, 71);
+        height: 88px;
+        width: 88px;
+        top: 7px;
+    }
+
+    .cssload-cssload-loader-line-wrap-wrap:nth-child(2) .cssload-loader-line-wrap {
+        border-color: rgb(234, 234, 71);
+        height: 74px;
+        width: 74px;
+        top: 14px;
+    }
+
+    .cssload-cssload-loader-line-wrap-wrap:nth-child(3) .cssload-loader-line-wrap {
+        border-color: rgb(71, 234, 71);
+        height: 60px;
+        width: 60px;
+        top: 20px;
+    }
+
+    .cssload-cssload-loader-line-wrap-wrap:nth-child(4) .cssload-loader-line-wrap {
+        border-color: rgb(71, 234, 234);
+        height: 47px;
+        width: 47px;
+        top: 27px;
+    }
+
+    .cssload-cssload-loader-line-wrap-wrap:nth-child(5) .cssload-loader-line-wrap {
+        border-color: rgb(71, 71, 234);
+        height: 33px;
+        width: 33px;
+        top: 34px;
+    }
+
+
+
+
+    @keyframes cssload-spin {
+        0%,
+        15% {
+            transform: rotate(0);
+            transform: rotate(0);
+        }
+        100% {
+            transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @-o-keyframes cssload-spin {
+        0%,
+        15% {
+            -o-transform: rotate(0);
+            transform: rotate(0);
+        }
+        100% {
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @-ms-keyframes cssload-spin {
+        0%,
+        15% {
+            -ms-transform: rotate(0);
+            transform: rotate(0);
+        }
+        100% {
+            -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @-webkit-keyframes cssload-spin {
+        0%,
+        15% {
+            -webkit-transform: rotate(0);
+            transform: rotate(0);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @-moz-keyframes cssload-spin {
+        0%,
+        15% {
+            -moz-transform: rotate(0);
+            transform: rotate(0);
+        }
+        100% {
+            -moz-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+
+
+	ul {
+		margin: 30px auto;
+		text-align: center;
+        padding: 0px;
+        font-family: 'Love Ya Like A Sister', cursive;
+        
+	}
+
+	li {
+        
+		list-style: none;
+		position: relative;
+		display: inline-block;
+		width: 200px;
+		height: 200px;
+        margin: 0px 10px;
+        
+	}
+
+	@-moz-keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	@-webkit-keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	@-o-keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	@keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	.round {
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		padding-top: 30px;		
+		text-decoration: none;		
+		text-align: center;	
+		font-size: 35px;	
+		letter-spacing: -.065em;	
+		-webkit-transition: all .25s ease-in-out;
+		-o-transition: all .25s ease-in-out;
+		-moz-transition: all .25s ease-in-out;
+		transition: all .25s ease-in-out;
+		border-radius: 300px;
+		z-index: 1;
+		border-width: 4px;
+		border-style: solid;
+        line-height: 137px;
+	}
+
+	.round:hover {
+		width: 130%;
+		height: 130%;
+		left: -15%;
+		top: -15%;
+		font-size: 33px;
+		padding-top: 38px;
+		-webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+		-o-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+		-moz-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+		z-index: 2;
+		border-size: 10px;
+		-webkit-transform: rotate(-360deg);
+		-moz-transform: rotate(-360deg);
+		-o-transform: rotate(-360deg);
+		transform: rotate(-360deg);
+        line-height: 40px;;
+	}
+
+	a.red {
+		background-color: rgba(239,57,50,1);
+		color: rgba(133,32,28,1);
+		border-color: rgba(133,32,28,.2);
+	}
+
+	a.red:hover {
+		color: rgba(239,57,50,1);
+	}
+
+	a.green {
+		background-color: rgba(1,151,171,1);
+		color: rgba(0,63,71,1);
+		border-color: rgba(0,63,71,.2);
+	}
+
+	a.green:hover {
+		color: rgba(1,151,171,1);
+	}
+
+	a.yellow {
+		background-color: rgba(252,227,1,1);
+		color: rgba(153,38,0,1);
+		border-color: rgba(153,38,0,.2);
+	}
+
+	a.yellow:hover {
+		color: rgba(252,227,1,1);
+	}
+
+	.round span.round {
+		display: block;
+		opacity: 0;
+		-webkit-transition: all .5s ease-in-out;
+		-moz-transition: all .5s ease-in-out;
+		-o-transition: all .5s ease-in-out;
+		transition: all .5s ease-in-out;
+		font-size: 1px;
+		border: none;
+		padding: 40% 20% 0 20%;
+		color: #fff;
+	}
+
+	.round span:hover {
+		opacity: .85;
+		font-size: 32px;
+		-webkit-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+		-moz-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+		-o-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+		text-shadow: 0 1px 1px rgba(0,0,0,.5);	
+	}
+
+	.green span {
+		background: rgba(0,63,71,.7);		
+	}
+
+	.red span {
+		background: rgba(133,32,28,.7);		
+	}
+
+	.yellow span {
+		background: rgba(161,145,0,.7);	
+
+	}

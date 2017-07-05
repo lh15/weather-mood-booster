@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>add friend</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+     <script src="https://maps.googleapis.com/maps/api/js?&libraries=places&callback=initAutocomplete"
+         async defer></script>
+
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+            height: 200px;
+            width: 300px;
+            margin: 0px;
+            padding: 0px;
+            border: 2px solid black;
+            display: inline-block;
+        }
+      /* Optional: Makes the sample page fill the window. */
+      #pac-input,.pac-card{background-color:#fff}body,html{height:100%;margin:0;padding:0}#description{font-family:Roboto;font-size:15px;font-weight:300}#infowindow-content .title{font-weight:700}#pac-input,.pac-controls label{font-family:Roboto;font-weight:300}#infowindow-content{display:none}#map #infowindow-content{display:inline}.pac-card{margin:10px 10px 0 0;border-radius:2px 0 0 2px;box-sizing:border-box;-moz-box-sizing:border-box;outline:0;box-shadow:0 2px 6px rgba(0,0,0,.3);font-family:Roboto}#pac-container{padding-bottom:12px;margin-right:12px}.pac-controls{display:inline-block;padding:5px 11px}.pac-controls label{font-size:13px}#pac-input{font-size:15px;margin-left:12px;padding:0 11px 0 13px;text-overflow:ellipsis;width:50%}#pac-input:focus{border-color:#4d90fe}#title{color:#fff;background-color:#4d90fe;font-size:25px;font-weight:500;padding:6px 12px}#target{width:345px}
+    </style>
+</head>
+
+<body>
+    <form action="{%url 'first_app:process_friend' id=current_user.id %}" method="POST">
+        {% csrf_token %}
+        <p>Add a friend</p>
+        <label><b>First Name</b></label>
+        <input type="text" placeholder="First Name" name="first_name" required><br>
+
+        <label><b>Last Name</b></label>
+        <input type="text" placeholder="Last Name" name="last_name" required><br>
+
+        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+   
+        <div id="map"></div><br>
+ 
+
+        <label><b>Location</b></label>
+        <input id="location" type="text" placeholder="location" name="location" required><br>
+
+        <label><b>latitude</b></label>
+        <input id="lat" type="text" placeholder="latitude" name="latitude" required><br>
+
+        <label><b>longitude</b></label>
+        <input id="lng" type="text" placeholder="longitude" name="longitude" required><br>
+
+        <button type="submit" >Add friend</button>
+    </form>
+
+   <script>
+    function initAutocomplete() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 41.8500300, lng: -87.6500500},
+          zoom: 13,
+        });
+        var geocoder = new google.maps.Geocoder();
+
+        google.maps.event.addListener(map, 'click', function (event) {
+            geocoder.geocode({
+                'latLng': event.latLng
+            }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        alert(results[0].formatted_address);
+                        var lat = event.latLng.lat();
+                        var lng = event.latLng.lng();
+                        console.log(event.latLng);
+                        console.log(lat);
+                        $("#location").val(results[0].formatted_address);
+                        $("#lat").val(lat);
+                        $("#lng").val(lng);
+                        console.log(lng);
+                        alert(event.latLng);
+                    }
+                }
+            });
+        });
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // // Create a marker for each place.
+            // markers.push(new google.maps.Marker({
+            //   map: map,
+            //   icon: icon,
+            //   title: place.name,
+            //   position: place.geometry.location
+            // }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+      }
+
+    </script>
+   
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>friends_weather</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=59318da56d23c50012b5942d&product=inline-share-buttons"></script>
+    </head>
+    <body>
+        {% load static %}
+    {% for friend in friends_list %}
+    
+        <p><b>{{friend.friend}}</b></p>
+        {% if friend.conditions == 'Drizzle' or friend.conditions == 'Clouds' or friend.conditions == 'Rain' or friend.conditions == 'Snow' or friend.conditions == 'Thunderstom' %}
+            <h3>{{friend.weather.name}}</h3>
+            <img src="{% static 'first_app/images/Clouds.svg' %}" alt="">
+            <p>{{friend.fahrenheit}}°F and {{friend.conditions}}</p>
+            <p>You might want to check on {{friend.friend.first_name}}, maybe even send him your quote.</p>
+        {% elif  friend.conditions == 'Clear' %}
+            <h3>{{friend.weather.name}}</h3>
+            <img src="{% static 'first_app/images/Clear.svg' %}" alt="">   
+            <p>{{friend.fahrenheit}}°F and {{friend.conditions}}</p>
+            <a href="https://www.kayak.com/" target="_blank">Like {{friend.friend.first_name}}'s weather? Plan a weekend getaway!</a>     
+        {% else %}
+            <h3>{{friend.weather.name}}</h3>
+            <img src="{% static 'first_app/images/weather.svg' %}" alt="">   
+            <p>{{friend.fahrenheit}}°F and {{friend.conditions}}</p> 
+        {% endif %}
+        <hr>
+    
+    {% endfor %}
+    </body>
+</html>

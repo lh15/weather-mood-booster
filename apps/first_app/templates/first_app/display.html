@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Weather Mood Booster</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> {% load static %}
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?&libraries=places&callback=initAutocomplete" async defer></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=59318da56d23c50012b5942d&product=inline-share-buttons"></script>
+
+    <link rel="stylesheet" href="{% static 'first_app/css/style.css' %}" media="screen" title="no title" charset="utf-8">
+    <link rel='stylesheet' href="{% static 'first_app/css/styles.css' %}">
+    <link rel='stylesheet' href="{% static 'first_app/css/tooltips.css' %}">
+    <script src="{% static 'first_app/js/tooltips.js' %}"></script>
+    <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister|Barrio|Luckiest+Guy|BioRhyme|Black+Ops+One|Bungee|Bungee+Shade|Cabin|Creepster|Ewert|Fruktur|Gravitas+One|Inconsolata|Monoton|Nunito|Nunito+Sans|Pacifico|Quicksand|Rubik:400,900|VT323"
+        rel="stylesheet">
+
+</head>
+<style>
+
+</style>
+
+<body>
+    <div class="header box14">
+        <h1> Hey there {{ current_user.first_name }}!</h1>
+        <a href="/log_out">log off</a><br>
+    </div>
+    <br>
+
+
+    <div id="loadingDiv">
+        <div class="cssload-loader-inner">
+            <div class="cssload-cssload-loader-line-wrap-wrap">
+                <div class="cssload-loader-line-wrap"></div>
+            </div>
+            <div class="cssload-cssload-loader-line-wrap-wrap">
+                <div class="cssload-loader-line-wrap"></div>
+            </div>
+            <div class="cssload-cssload-loader-line-wrap-wrap">
+                <div class="cssload-loader-line-wrap"></div>
+            </div>
+            <div class="cssload-cssload-loader-line-wrap-wrap">
+                <div class="cssload-loader-line-wrap"></div>
+            </div>
+            <div class="cssload-cssload-loader-line-wrap-wrap">
+                <div class="cssload-loader-line-wrap"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="display_content"></div><br>
+    <!--<button id="friend_weather_btn" type="button" class="btn btn-primary btn-lg VT323" data-toggle="modal" data-target="#friends_weather">View Friends Weather</button>
+    <button id="add_friend_btn" type="button" class="btn btn-primary btn-lg VT323" data-toggle="modal" data-target="#myModal">Add Friend</button>-->
+    <div id="buttons">
+        <ul>
+            <li><a href="#" class="round yellow">Add Friend<span class="round" data-toggle="modal" data-target="#myModal">Click here to add friends</span></a></li>
+            <li><a href="#" class="round red">Friends<span class="round" data-toggle="modal" data-target="#friends_weather">Are you sure? This might negatively affect your mood</span></a></li>
+        </ul>
+    </div>
+    
+
+    <!-- Modal -->
+    <div class="modal fade" id="friends_weather" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h2 class="modal-title" id="myModalLabel">"I'm too busy working on my own grass to notice if yours is greener"</h2>
+                </div>
+                <div class="modal-body">
+                    <div id="display_friends_weather"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add a Friend</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="{%url 'first_app:process_friend' id=current_user.id %}" method="POST">
+                        {% csrf_token %}
+                        <p>Add a friend</p>
+                        <label><b>First Name</b></label>
+                        <input type="text" placeholder="First Name" name="first_name" required><br>
+
+                        <label><b>Last Name</b></label>
+                        <input type="text" placeholder="Last Name" name="last_name" required><br>
+                        <div class="col-md-12">
+                            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                            <div id="map"></div><br>
+                        </div>
+
+                        <label><b>Location</b></label>
+                        <input id="location" type="text" placeholder="location" name="location" required><br>
+
+                        <label><b>latitude</b></label>
+                        <input id="lat" type="text" placeholder="latitude" name="latitude" required><br>
+
+                        <label><b>longitude</b></label>
+                        <input id="lng" type="text" placeholder="longitude" name="longitude" required><br>
+
+                        <button type="submit">Add friend</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div id="share_this" class="box14">
+
+        <div  class="VT323">
+            <h3>Does your friend need to see this quote?</h3>
+            <div class="sharethis-inline-share-buttons"></div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+
+
+    <script>
+        function initAutocomplete() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 41.8500300, lng: -87.6500500 },
+                zoom: 13,
+            });
+            var geocoder = new google.maps.Geocoder();
+
+            google.maps.event.addListener(map, 'click', function (event) {
+                geocoder.geocode({
+                    'latLng': event.latLng
+                }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (results[0]) {
+                            // alert(results[0].formatted_address);
+                            var lat = event.latLng.lat();
+                            var lng = event.latLng.lng();
+                            console.log(event.latLng);
+                            console.log(lat);
+                            $("#location").val(results[0].formatted_address);
+                            $("#lat").val(lat);
+                            $("#lng").val(lng);
+                            console.log(lng);
+                            // alert(event.latLng);
+                        }
+                    }
+                });
+            });
+
+            // Create the search box and link it to the UI element.
+            var input = document.getElementById('pac-input');
+            var searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener('bounds_changed', function () {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            var markers = [];
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener('places_changed', function () {
+                var places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                // Clear out the old markers.
+                markers.forEach(function (marker) {
+                    marker.setMap(null);
+                });
+                markers = [];
+
+                // For each place, get the icon, name and location.
+                var bounds = new google.maps.LatLngBounds();
+                places.forEach(function (place) {
+                    if (!place.geometry) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+                    var icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+
+                    // // Create a marker for each place.
+                    // markers.push(new google.maps.Marker({
+                    //   map: map,
+                    //   icon: icon,
+                    //   title: place.name,
+                    //   position: place.geometry.location
+                    // }));
+
+                    if (place.geometry.viewport) {
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                map.fitBounds(bounds);
+            });
+            $('#myModal').on('shown.bs.modal', function () {
+                google.maps.event.trigger(map, 'resize');
+
+            });
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            if ("geolocation" in navigator) { //check geolocation available 
+                //try to get user current location using getCurrentPosition() method
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var lat = position.coords.latitude;
+                    var lon = position.coords.longitude;
+                    console.log("Found your location \nLat : " + position.coords.latitude + " \nLang :" + position.coords.longitude);
+                    // $.post("/get_weather", { lat: position.coords.latitude, lon: position.coords.longitude });
+                    $.ajax({
+                        url: "/get_weather",
+                        type: "POST",
+                        data: { lat: position.coords.latitude, lon: position.coords.longitude, csrfmiddlewaretoken: '{{ csrf_token }}' },
+                        success: function (serverResponse) {
+                            // Replace the html inside a div with the class "posts" with the server response
+                            console.log("Received this from server: ", serverResponse)
+                            $('#display_content').html(serverResponse)
+                        }
+                    });
+                    $.ajax({
+                        url: "/get_friend_weather",
+                        type: "POST",
+                        data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+                        success: function (serverResponse) {
+                            // Replace the html inside a div with the class "posts" with the server response
+                            console.log("Received this from server: ", serverResponse)
+                            $('#display_friends_weather').html(serverResponse)
+                        }
+                    });
+                });
+            } else {
+                console.log("Browser doesn't support geolocation!");
+            }
+
+
+        });
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?&libraries=places&callback=initAutocomplete" async defer></script>
+
+
+    <script>
+        $(document).ajaxStart(function () {
+            $("#loadingDiv").css("display", "block");
+
+        });
+        $(document).ajaxComplete(function () {
+            $("#loadingDiv").css("display", "none");
+            $("#display_content").addClass("display_content");
+            $('#add_friend_btn').css("display", "inline-block");
+            $('#share_this').css("display", "block");
+            $('#buttons').css("display", "block");
+            $('#friend_weather_btn').css("display", "inline-block");
+            $("img[title]").tooltips();
+
+
+        });
+    </script>
+
+</body>
+
+</html>
