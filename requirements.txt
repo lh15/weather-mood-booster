@@ -15,4 +15,5 @@ requests==2.14.2
 schedule==0.4.2
 six==1.10.0
 tzlocal==1.4
-gunicorn==19.1.1
+gunicorn==19.6.0
+whitenoise==3.2
