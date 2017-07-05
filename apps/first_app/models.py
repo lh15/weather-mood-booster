@@ -19,7 +19,7 @@ class UserManager(models.Manager):
                   encrypted_password = bcrypt.hashpw(str(password).encode(), str(user.salt).encode())
                   if user.password == encrypted_password:
                         sessionData['logged_in'] = email
-                        print sessionData['logged_in']
+                        # print sessionData['logged_in']
                         error = False
                   else:
                         messages.error(request, 'Invalid Password!')
