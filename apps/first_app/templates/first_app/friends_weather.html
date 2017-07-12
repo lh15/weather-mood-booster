@@ -12,12 +12,12 @@
     {% for friend in friends_list %}
     
         <p><b>{{friend.friend}}</b></p>
-        {% if friend.conditions == 'Drizzle' or friend.conditions == 'Clouds' or friend.conditions == 'Rain' or friend.conditions == 'Snow' or friend.conditions == 'Thunderstorm' %}
+        {% if or friend.conditions == 'Clouds' %}
             <h3>{{friend.weather.name}}</h3>
             <img src="{% static 'first_app/images/Clouds.svg' %}" alt="">
             <p>{{friend.fahrenheit}}°F and {{friend.conditions}}</p>
             <p>You might want to check on {{friend.friend.first_name}}, maybe even send them your quote.</p>
-        {% elif  friend.conditions == 'Rain' %}
+        {% elif  friend.conditions == 'Rain' or friend.conditions == 'Drizzle' %}
             <h3>{{friend.weather.name}}</h3>
             <img src="{% static 'first_app/images/rainy-6.svg' %}" alt="">   
             <p>{{friend.fahrenheit}}°F and {{friend.conditions}}</p>
@@ -32,7 +32,11 @@
             <img src="{% static 'first_app/images/thunder.svg' %}" alt="">   
             <p>{{friend.fahrenheit}}°F and {{friend.conditions}}</p>
             <p>You might want to check on {{friend.friend.first_name}}, maybe even send them your quote.</p>
-              
+        {% elif  friend.conditions == 'Snow' %}
+            <h3>{{friend.weather.name}}</h3>
+            <img src="{% static 'first_app/images/snowy-6.svg' %}" alt="">   
+            <p>{{friend.fahrenheit}}°F and {{friend.conditions}}</p>
+            <p>You might want to check on {{friend.friend.first_name}}, maybe even send them your quote.</p>
         {% else %}
             <h3>{{friend.weather.name}}</h3>
             <img src="{% static 'first_app/images/Clear.svg' %}" alt="">   

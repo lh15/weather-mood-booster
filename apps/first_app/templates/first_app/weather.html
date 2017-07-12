@@ -13,7 +13,7 @@
     
     <!--add if statement for 'drizzle''clouds''rain''snow''clear''thunderstom':-->
     
-    {% if conditions == 'Drizzle' or conditions == 'Clouds' or conditions == 'Rain' or conditions == 'Snow' or conditions == 'Thunderstorm' %}
+    {% if  conditions == 'Clouds' %}
                 
         <img title="HAHAHAHAHA!" class="gif_img" src="{% static 'first_app/images/funny.gif' %}" alt=""><br>
         <div class="VT323 quote_div">
@@ -46,7 +46,23 @@
         </div>
         
         <p class="VT323 quote_div">It ain't you, its the weather!</p>
-    {% elif  conditions == 'Rain' %}
+    {% elif  conditions == 'Snow' %}
+        <img title="HAHAHAHAHA!" class="gif_img" src="{% static 'first_app/images/funny.gif' %}" alt=""><br>
+        <div class="VT323 quote_div">
+            <p>"{{ funny.contents.quotes.0.quote }}"</p>
+            <p>- {{ funny.contents.quotes.0.author }}</p>
+        </div>
+        
+        <hr>
+        <div class="box14">
+            <h2 class="city">{{city}}</h2>
+            <img class="weather_img" src="{% static 'first_app/images/snowy-6.svg' %}" alt="">
+            <p id="fahrenheit">{{fahrenheit}}°F</p>
+            <p id="celcius">{{celcius}}°C</p>
+        </div>
+        
+        <p class="VT323 quote_div">It ain't you, its the weather!</p>
+    {% elif  conditions == 'Drizzle' or conditions == 'Rain' %}
         <img title="HAHAHAHAHA!" class="gif_img" src="{% static 'first_app/images/funny.gif' %}" alt=""><br>
         <div class="VT323 quote_div">
             <p>"{{ funny.contents.quotes.0.quote }}"</p>
