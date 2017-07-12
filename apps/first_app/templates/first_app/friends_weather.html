@@ -12,19 +12,30 @@
     {% for friend in friends_list %}
     
         <p><b>{{friend.friend}}</b></p>
-        {% if friend.conditions == 'Drizzle' or friend.conditions == 'Clouds' or friend.conditions == 'Rain' or friend.conditions == 'Snow' or friend.conditions == 'Thunderstom' %}
+        {% if friend.conditions == 'Drizzle' or friend.conditions == 'Clouds' or friend.conditions == 'Rain' or friend.conditions == 'Snow' or friend.conditions == 'Thunderstorm' %}
             <h3>{{friend.weather.name}}</h3>
             <img src="{% static 'first_app/images/Clouds.svg' %}" alt="">
             <p>{{friend.fahrenheit}}°F and {{friend.conditions}}</p>
-            <p>You might want to check on {{friend.friend.first_name}}, maybe even send him your quote.</p>
+            <p>You might want to check on {{friend.friend.first_name}}, maybe even send them your quote.</p>
+        {% elif  friend.conditions == 'Rain' %}
+            <h3>{{friend.weather.name}}</h3>
+            <img src="{% static 'first_app/images/rainy-6.svg' %}" alt="">   
+            <p>{{friend.fahrenheit}}°F and {{friend.conditions}}</p>
+            <p>You might want to check on {{friend.friend.first_name}}, maybe even send them your quote.</p>  
         {% elif  friend.conditions == 'Clear' %}
             <h3>{{friend.weather.name}}</h3>
             <img src="{% static 'first_app/images/Clear.svg' %}" alt="">   
             <p>{{friend.fahrenheit}}°F and {{friend.conditions}}</p>
-            <a href="https://www.kayak.com/" target="_blank">Like {{friend.friend.first_name}}'s weather? Plan a weekend getaway!</a>     
+            <a href="https://www.kayak.com/" target="_blank">Like {{friend.friend.first_name}}'s weather? Plan a weekend getaway!</a> 
+        {% elif  friend.conditions == 'Thunderstorm' %}
+            <h3>{{friend.weather.name}}</h3>
+            <img src="{% static 'first_app/images/thunder.svg' %}" alt="">   
+            <p>{{friend.fahrenheit}}°F and {{friend.conditions}}</p>
+            <p>You might want to check on {{friend.friend.first_name}}, maybe even send them your quote.</p>
+              
         {% else %}
             <h3>{{friend.weather.name}}</h3>
-            <img src="{% static 'first_app/images/weather.svg' %}" alt="">   
+            <img src="{% static 'first_app/images/Clear.svg' %}" alt="">   
             <p>{{friend.fahrenheit}}°F and {{friend.conditions}}</p> 
         {% endif %}
         <hr>
