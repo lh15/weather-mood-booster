@@ -63,7 +63,7 @@ def get_weather(request):
                 'conditions': conditions,
             }
 
-        print weather['name']
+        # print weather['name']
         
         return render(request, "first_app/weather.html", context)
 
