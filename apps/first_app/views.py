@@ -18,7 +18,9 @@ def get_quotes(request):
     categories = ["inspire", "management", "life", "funny", "love"]
     for category in categories:
         url = 'http://quotes.rest/qod.json?category=' + category
-        r = requests.get(url)
+        r = requests.get(url, headers={
+          "Accept": "application/json", 
+          "X-TheySaidSo-Api-Secret": "gR1fznrpGzxYK6MIyrOZjQeF"})
         print "api called"
         quote = r.json()
         # print quote['contents']['quotes'][0]['quote']
